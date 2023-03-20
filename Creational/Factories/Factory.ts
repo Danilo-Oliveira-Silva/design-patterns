@@ -1,9 +1,9 @@
-import Airport from './Domains/Airport';
-import Flight from './Domains/Flight';
-import NormalTicket from './Domains/NormalTicket';
-import Person from './Domains/Person';
-import PrivateTicket from './Domains/PrivateTicket';
-import { INormalTicket, IPrivateTicket } from './Interfaces/ITicket';
+import Airport from '../Domains/Airport';
+import Flight from '../Domains/Flight';
+import NormalTicket from '../Domains/NormalTicket';
+import Person from '../Domains/Person';
+import PrivateTicket from '../Domains/PrivateTicket';
+import { INormalTicket, IPrivateTicket } from '../Interfaces/ITicket';
 export default class Factory {
 
     static createAirport(IATA: string, name: string): Airport {
@@ -28,9 +28,9 @@ export default class Factory {
 
     static createTicket(data: INormalTicket | IPrivateTicket) {
         if (Factory.isPrivateTicket(data)) {
-            return Factory.createPrivateTicket(data);
+            return new PrivateTicket(data);
         } else {
-            return Factory.createNormalTicket(data);
+            return new NormalTicket(data);
         }
     }
 
